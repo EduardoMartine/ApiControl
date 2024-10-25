@@ -10,12 +10,12 @@ interface University {
 
 const UniversitiesScreen = () => {
   const [country, setCountry] = useState<string>('');
-  const [universities, setUniversities] = useState<University[]>([]); // Usa la interfaz aquí
+  const [universities, setUniversities] = useState<University[]>([]); 
 
   const fetchUniversities = async () => {
     try {
       const response = await fetch(`http://universities.hipolabs.com/search?country=${country}`);
-      const data: University[] = await response.json(); // Especifica el tipo de datos esperados
+      const data: University[] = await response.json(); 
       setUniversities(data);
     } catch (error) {
       console.error(error);
