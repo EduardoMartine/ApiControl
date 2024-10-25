@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, FlatList, Linking, StyleSheet } from 'react-native';
 
+// Define una interfaz para los datos de las universidades
+interface University {
+  name: string;
+  domains: string[];
+  web_pages: string[];
+}
+
 const UniversitiesScreen = () => {
-  const [country, setCountry] = useState('');
-  const [universities, setUniversities] = useState([]);
+  const [country, setCountry] = useState<string>('');
+  const [universities, setUniversities] = useState<University[]>([]); // Usa la interfaz aquí
 
   const fetchUniversities = async () => {
     try {
       const response = await fetch(`http://universities.hipolabs.com/search?country=${country}`);
-      const data = await response.json();
+      const data: University[] = await response.json(); // Especifica el tipo de datos esperados
       setUniversities(data);
     } catch (error) {
       console.error(error);
